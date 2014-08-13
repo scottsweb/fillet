@@ -1,0 +1,15 @@
+{
+	"name"       : "cftp/fillet",
+	"description": "Safely embed iFrames in the WordPress text editor.",
+	"type"       : "wordpress-plugin",
+	"license"    : "GPL-2.0+",
+	"authors"    : [
+		{
+			"name"    : "Code For The People",
+			"homepage": "http://codeforthepeople.com/"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
