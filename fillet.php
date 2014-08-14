@@ -51,7 +51,7 @@ class fillet {
 	*/
 	function __construct() {
 
-		add_shortcode( 'fillet', array( $this, 'fillet' ) );
+		add_shortcode( 'iframe', array( $this, 'fillet' ) );
 		add_action( 'admin_init', array( $this, 'init' ) );
 
 		if (! is_admin() ) {
@@ -73,29 +73,42 @@ class fillet {
 
 		global $wpdb, $post;
 
-		// set url sceme on emmbed
-
 		extract( shortcode_atts(
 			array(
-				'url' = '',
+				'url' => '',
 				'width' => '',
-				'hashtag' => ''
+				'height' => ''
 			),
 		$atts, 'fillet' ) );
 
-		// get classes from url
-		// filter classes
-		// add attributes filter
-		// set width and height - overwrite with JS
-		// no border
-		// wrap in o-container?!
-
+		// check we have a url (return if not)
 		if ($url == '') return;
 
+		// set url scheme and validate URL
 		$url = set_url_scheme( esc_url( $url ) );
 
-		return $ret;
+		// classes with filter
+		$service = str_replace(array('www.', '.com', '.net', '.co.uk', '.org'), '', parse_url($url, PHP_URL_HOST));
+		$classes = apply_filters( 'fillet_iframe_class', 'i-container fillet-embed '.$service );
 
+		// filter for custom attributes
+		$attributes = apply_filters( 'fillet_iframe_attributes', 'allowfullscreen' );
+
+		$ret = '<figure class="' . $classes . '">';
+		$ret .= '<iframe src="'. $url .'" frameborder="0" '. $attributes .' ';
+
+		if ($width != '') {
+			$ret .= 'width="' . $width . '"';
+		}
+
+		if ($height != '') {
+			$ret .= 'height="' . $height . '"';
+		}
+
+		$ret .= '></iframe>';
+		$ret .= '</figure>';
+
+		return $ret;
 	}
 
 	/**
