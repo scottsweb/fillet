@@ -1,4 +1,5 @@
 <?php
+
 /*
 Plugin Name: Fillet
 Plugin URI: https://bitbucket.com/cftp/fillet
@@ -45,16 +46,16 @@ GNU General Public License for more details.
 class fillet {
 
 	/**
-	* fillet
-	*
-	* @author Scott Evans
-	*/
+	 * fillet
+	 *
+	 * @author Scott Evans
+	 */
 	function __construct() {
 
 		add_shortcode( 'iframe', array( $this, 'fillet' ) );
 		add_action( 'admin_init', array( $this, 'init' ) );
 
-		if (! is_admin() ) {
+		if ( ! is_admin() ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'fillet_js' ) );
 		}
 	}
@@ -66,42 +67,51 @@ class fillet {
 	 *
 	 * @param  string $atts
 	 * @param  string $content
+	 *
 	 * @author Scott Evans
 	 * @return string
 	 */
-	function fillet($atts, $content = "") {
+	function fillet( $atts, $content = '' ) {
 
 		global $wpdb, $post;
 
 		extract( shortcode_atts(
 			array(
-				'url' => '',
-				'width' => '',
-				'height' => ''
+				'url'    => '',
+				'width'  => '',
+				'height' => '',
 			),
-		$atts, 'fillet' ) );
+			$atts, 'fillet' ) );
 
 		// check we have a url (return if not)
-		if ($url == '') return;
+		if ( $url == '' ) {
+			return;
+		}
 
 		// set url scheme and validate URL
 		$url = set_url_scheme( esc_url( $url ) );
 
 		// classes with filter
-		$service = str_replace(array('www.', '.com', '.net', '.co.uk', '.org'), '', parse_url($url, PHP_URL_HOST));
-		$classes = apply_filters( 'fillet_iframe_class', 'i-container fillet-embed '.$service );
+		$service = str_replace( array(
+			'www.',
+			'.com',
+			'.net',
+			'.co.uk',
+			'.org',
+		), '', parse_url( $url, PHP_URL_HOST ) );
+		$classes = apply_filters( 'fillet_iframe_class', 'i-container fillet-embed ' . $service );
 
 		// filter for custom attributes
 		$attributes = apply_filters( 'fillet_iframe_attributes', 'allowfullscreen' );
 
 		$ret = '<figure class="' . $classes . '">';
-		$ret .= '<iframe src="'. $url .'" frameborder="0" '. $attributes .' ';
+		$ret .= '<iframe src="' . $url . '" frameborder="0" ' . $attributes . ' ';
 
-		if ($width != '') {
+		if ( $width != '' ) {
 			$ret .= 'width="' . $width . '"';
 		}
 
-		if ($height != '') {
+		if ( $height != '' ) {
 			$ret .= 'height="' . $height . '"';
 		}
 
@@ -129,14 +139,21 @@ class fillet {
 	/**
 	 * fillet_js
 	 *
-	 * Load the twitter intent JS locally for opening links in small twitter window
+	 * JS to calculate aspect ratio and resize images proportionally.
+	 * Dependencies: jQuery and jQuery.doTimeout plugin.
+	 * Scripts need to be in the footer so they come after the content.
 	 *
-	 * @author Scott Evans
+	 * @author William Turrell
 	 * @return void
 	 */
 	function fillet_js() {
-		wp_register_script('fillet-js', plugins_url( '/assets/js/fillet.js' , __FILE__ ), array(), 1);
-		wp_enqueue_script('fillet-js');
+		wp_register_script( 'jquery-dotimeout', plugins_url( '/assets/js/jquery.ba-dotimeout.js', __FILE__ ), array( 'jquery' ), 1, true );
+		wp_register_script( 'fillet-js', plugins_url( '/assets/js/fillet.js', __FILE__ ), array(
+			'jquery',
+			'jquery-dotimeout',
+		), 1, true );
+		wp_enqueue_script( 'jquery-dotimeout' );
+		wp_enqueue_script( 'fillet-js' );
 	}
 
 	/**
@@ -148,7 +165,7 @@ class fillet {
 	 * @return void
 	 */
 	function fillet_mce_css() {
-		wp_enqueue_style( 'fillet', plugins_url( '/assets/css/fillet.css' , __FILE__ ), 'dashicons', 1, 'screen');
+		wp_enqueue_style( 'fillet', plugins_url( '/assets/css/fillet.css', __FILE__ ), 'dashicons', 1, 'screen' );
 	}
 
 	/**
@@ -162,7 +179,7 @@ class fillet {
 	function fillet_mce() {
 
 		// check user permissions
-		if ( !current_user_can( 'edit_posts' ) && !current_user_can( 'edit_pages' ) ) {
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
 			return;
 		}
 
@@ -181,11 +198,14 @@ class fillet {
 	 * Push a new button on to TinyMCE buttons array
 	 *
 	 * @author Scott Evans
+	 *
 	 * @param  array $buttons
+	 *
 	 * @return array
 	 */
 	function fillet_mce_button( $buttons ) {
 		array_push( $buttons, 'fillet' );
+
 		return $buttons;
 	}
 
@@ -195,11 +215,14 @@ class fillet {
 	 * Add fillet TinyMCE plugin JS
 	 *
 	 * @author Scott Evans
+	 *
 	 * @param  array $plugins
+	 *
 	 * @return array
 	 */
 	function fillet_mce_plugin( $plugins ) {
-		$plugins['fillet'] = plugins_url( '/assets/js/fillet-mce.js' , __FILE__ );
+		$plugins['fillet'] = plugins_url( '/assets/js/fillet-mce.js', __FILE__ );
+
 		return $plugins;
 	}
 }
