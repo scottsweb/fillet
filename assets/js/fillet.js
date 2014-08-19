@@ -4,9 +4,9 @@
 
     // cftp/fillet iframe auto resizing.  Must go in footer.
 
-    var $container = $('article'),                  // restrict to actual content
-        $iframes = $container.find('iframe'),       // *any* iframe
-        resizeLock = false;                         // only one instance should run at once
+    var $container = $('article'),                                  // restrict to actual content
+        $iframes = $container.find('.fillet-embed').find('iframe'), // only iframes added using fillet plugin
+        resizeLock = false;                                         // only one instance should run at once
 
     function iframeSetup() {
 
