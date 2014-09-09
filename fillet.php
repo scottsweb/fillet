@@ -99,7 +99,7 @@ class fillet {
 			'.co.uk',
 			'.org',
 		), '', parse_url( $url, PHP_URL_HOST ) );
-		$classes = apply_filters( 'fillet_iframe_class', 'i-container fillet-embed ' . $service );
+		$classes = apply_filters( 'fillet_iframe_class', 'i-container fillet-embed ' . sanitize_title_with_dashes( $service ) );
 
 		// filter for custom attributes
 		$attributes = apply_filters( 'fillet_iframe_attributes', 'allowfullscreen' );
