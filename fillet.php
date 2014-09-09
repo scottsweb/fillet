@@ -152,7 +152,7 @@ class fillet {
 			'jquery',
 			'jquery-dotimeout',
 		), 1, true );
-		wp_enqueue_script( 'jquery-dotimeout' );
+
 		wp_enqueue_script( 'fillet-js' );
 	}
 
