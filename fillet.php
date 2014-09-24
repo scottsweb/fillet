@@ -56,7 +56,7 @@ class fillet {
 		add_action( 'admin_init', array( $this, 'init' ) );
 
 		if ( ! is_admin() ) {
-			add_action( 'wp_enqueue_scripts', array( $this, 'fillet_js' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'fillet_assets' ) );
 		}
 	}
 
@@ -137,22 +137,25 @@ class fillet {
 	}
 
 	/**
-	 * fillet_js
+	 * fillet_assets
 	 *
 	 * JS to calculate aspect ratio and resize images proportionally.
-	 * Dependencies: jQuery and jQuery.doTimeout plugin.
+	 * Dependencies: jQuery
 	 * Scripts need to be in the footer so they come after the content.
 	 *
 	 * @author William Turrell
 	 * @return void
 	 */
-	function fillet_js() {
-		wp_register_script( 'jquery-dotimeout', plugins_url( '/assets/js/jquery.ba-dotimeout.js', __FILE__ ), array( 'jquery' ), 1, true );
+	function fillet_assets() {
+
+		// css
+		wp_register_style( 'fillet-css', plugins_url( '/assets/css/fillet-css.css', __FILE__ ), array(), 1);
+		wp_enqueue_style( 'fillet-css' );
+
+		// js
 		wp_register_script( 'fillet-js', plugins_url( '/assets/js/fillet.js', __FILE__ ), array(
 			'jquery',
-			'jquery-dotimeout',
 		), 1, true );
-
 		wp_enqueue_script( 'fillet-js' );
 	}
 

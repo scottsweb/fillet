@@ -1,0 +1,32 @@
+.i-container
+	{
+	margin-bottom: 20px;
+	position: relative;
+	padding-top: 20px;
+	padding-bottom: 49.25%;
+	height: 0;
+	overflow: hidden;
+	}
+
+.i-container iframe,
+.i-container object,
+.i-container embed
+	{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	}
+
+.i-container:before,
+.i-container:after
+	{
+	content: " ";
+	display: table;
+	}
+
+.i-container:after
+	{
+    clear: both;
+	}
