@@ -4,7 +4,7 @@
 
 * Status: ✔ Active
 * Contributors: [@scottsweb](http://twitter.com/scottsweb)
-* Description: Safely embed responsive iFrames in the WordPress text editor.
+* Description: Safely embed responsive IFrames in the WordPress text editor.
 * Author: [Scott Evans](http://scott.ee)
 * Author URI: [http://scott.ee](http://scott.ee)
 * License: GNU General Public License v2.0
@@ -12,9 +12,9 @@
 
 ## About
 
-Fillet adds a new iFrame button to the toolbar in the WordPress visual editor. By using a [shortcode](http://codex.wordpress.org/Shortcode), it allows for safer, responsive and future proof embeds.
+Fillet adds a new IFrame button to the toolbar in the WordPress visual editor. By using a [shortcode](http://codex.wordpress.org/Shortcode), it allows for safer, responsive and future proof embeds.
 
-The chosen width and heigh for an embed is converted into a ratio which is used to scale your embeds across different devices.
+The chosen width and height for an IFrame embed is converted into a ratio which is used to scale your embeds across different devices.
 
 ## Installation
 
@@ -35,7 +35,6 @@ Visit [WordPress.org for a comprehensive guide](http://codex.wordpress.org/Manag
 ...
 
 ## Changelog
-
 
 ####1.0
 * Initial release

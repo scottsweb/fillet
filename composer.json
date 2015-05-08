@@ -1,12 +1,12 @@
 {
-	"name"       : "cftp/fillet",
+	"name"       : "scottsweb/fillet",
 	"description": "Safely embed iFrames in the WordPress text editor.",
 	"type"       : "wordpress-plugin",
 	"license"    : "GPL-2.0+",
 	"authors"    : [
 		{
-			"name"    : "Code For The People",
-			"homepage": "http://codeforthepeople.com/"
+			"name"    : "Scott Evans",
+			"homepage": "http://scott.ee/"
 		}
 	],
 	"require": {
