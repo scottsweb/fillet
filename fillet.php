@@ -2,34 +2,17 @@
 
 /*
 Plugin Name: Fillet
-Plugin URI: https://bitbucket.com/cftp/fillet
-Description: Safely embed iFrames in the WordPress text editor.
+Plugin URI: https://github.com/scottsweb/fillet
+Description: Safely embed responsive IFrames in the WordPress text editor.
 Version: 1.0
-Author: Scott Evans (Code For The People)
-Author URI: http://codeforthepeople.com
+Author: Scott Evans
+Author URI: http://scott.ee
 Text Domain: fillet
 Domain Path: /assets/languages/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Copyright © 2014 Code for the People ltd
-
-                _____________
-               /      ____   \
-         _____/       \   \   \
-        /\    \        \___\   \
-       /  \    \                \
-      /   /    /          _______\
-     /   /    /          \       /
-    /   /    /            \     /
-    \   \    \ _____    ___\   /
-     \   \    /\    \  /       \
-      \   \  /  \____\/    _____\
-       \   \/        /    /    / \
-        \           /____/    /___\
-         \                        /
-          \______________________/
-
+Copyright © 2014 Scott Evans
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -104,15 +87,15 @@ class fillet {
 		// filter for custom attributes
 		$attributes = apply_filters( 'fillet_iframe_attributes', 'allowfullscreen' );
 
-		$ret = '<figure class="' . $classes . '">';
-		$ret .= '<iframe src="' . $url . '" frameborder="0" ' . $attributes . ' ';
+		$ret = '<figure class="' . esc_attr( $classes ) . '">';
+		$ret .= '<iframe src="' . esc_url( $url ) . '" frameborder="0" ' . $attributes . ' ';
 
 		if ( $width != '' ) {
-			$ret .= 'width="' . $width . '"';
+			$ret .= 'width="' . esc_attr( $width ) . '"';
 		}
 
 		if ( $height != '' ) {
-			$ret .= 'height="' . $height . '"';
+			$ret .= 'height="' . esc_attr( $height ) . '"';
 		}
 
 		$ret .= '></iframe>';
