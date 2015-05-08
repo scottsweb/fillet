@@ -1,16 +1,41 @@
+![Fillet](http://cloud.scott.ee/images/fillet.png)
+
 # Fillet
 
-Fillet adds a button to the toolbar in the WordPress visual editor.  You can still insert any iframe, but by using a [shortcode](http://codex.wordpress.org/Shortcode), rather than copying and pasting HTML, it's safer (and future proof.)
+* Status: ✔ Active
+* Contributors: [@scottsweb](http://twitter.com/scottsweb)
+* Description: Safely embed responsive iFrames in the WordPress text editor.
+* Author: [Scott Evans](http://scott.ee)
+* Author URI: [http://scott.ee](http://scott.ee)
+* License: GNU General Public License v2.0
+* License URI: [http://www.gnu.org/licenses/gpl-2.0.html](http://www.gnu.org/licenses/gpl-2.0.html)
 
-# Auto iframe resizing
+## About
 
-We use javascript to scale down iframes to fit on tablet/mobile devices, whilst maintaining the correct aspect ratio.
+Fillet adds a new iFrame button to the toolbar in the WordPress visual editor. By using a [shortcode](http://codex.wordpress.org/Shortcode), it allows for safer, responsive and future proof embeds.
 
-- Requires: jQuery (included in WordPress) and [jQuery.doTimeout](https://github.com/cowboy/jquery-dotimeout) (included with Fillet)
-- Browser compatibility: all modern standards-compliant browsers, IE9 and up.
-- All javascript is added in the footer for performance.
-- Requires posts to use an `<article>` tag (standard semantic HTML).
-- We look for **all** iframes on the page.
-- Fillet's PHP wraps `<iframe>`s in a `<figure>` tag. Our javascript looks at that to determine the available width, so check for margins on the `<figure>` if you have unwanted white space.
-- Auto resizing is (not yet) compatible with infinite scroll.
-- Tested with [TwentyFourteen](http://wordpress.org/themes/twentyfourteen) and [Bootiful](https://github.com/cftp/bootiful) themes.
+The chosen width and heigh for an embed is converted into a ratio which is used to scale your embeds across different devices.
+
+## Installation
+
+To install this plugin:
+
+* Upload the `fillet` folder to the `/wp-content/plugins/` directory
+* Activate the plugin through the 'Plugins' menu in WordPress
+* Use the new iFrame embed button on the WordPress text editor or the shortcode `[iframe url="" width="" height=""]`
+
+Visit [WordPress.org for a comprehensive guide](http://codex.wordpress.org/Managing_Plugins#Manual_Plugin_Installation) on in how to install WordPress plugins.
+
+## Hooks & Filters
+
+...
+
+## Frequently Asked Questions
+
+...
+
+## Changelog
+
+
+####1.0
+* Initial release
