@@ -36,7 +36,7 @@
 					],
 					onsubmit: function( e ) {
 
-						var shortcode = '<p>[iframe'
+						var shortcode = '<p>[iframe';
 
 						// iframe url
 						if (e.data.url != '') {
