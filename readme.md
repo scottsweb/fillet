@@ -36,5 +36,5 @@ Visit [WordPress.org for a comprehensive guide](http://codex.wordpress.org/Manag
 
 ## Changelog
 
-####1.0
+#### 1.0
 * Initial release
